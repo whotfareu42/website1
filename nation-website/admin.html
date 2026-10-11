@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Council</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-title-suffix="Council">
+  <header class="banner">
+    <div class="banner-inner">
+      <div>
+        <h1 class="nation-name" data-nation-name></h1>
+        <p class="motto"><em>Council Chamber</em></p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="demo-note" class="demo-note" hidden>
+      Demo mode: the admin panel needs Supabase. Fill in <code>config.js</code> (see README) to log in.
+    </div>
+
+    <!-- Login -->
+    <section id="login-view" class="scroll narrow" hidden>
+      <h2>Council Login</h2>
+      <p class="lead">Only members of the Council may enter.</p>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button class="btn" type="submit">Enter</button>
+        <p id="login-msg" class="form-msg error" role="status"></p>
+      </form>
+    </section>
+
+    <!-- Panel -->
+    <section id="panel-view" hidden>
+      <div class="admin-bar">
+        <nav class="admin-tabs" role="tablist">
+          <button role="tab" data-atab="applications">Applications</button>
+          <button role="tab" data-atab="constitution">Constitution</button>
+          <button role="tab" data-atab="builds">Builds</button>
+        </nav>
+        <div class="actions">
+          <span id="who" class="muted"></span>
+          <a class="btn small ghost" href="index.html">View site</a>
+          <button id="logout" class="btn small">Log out</button>
+        </div>
+      </div>
+
+      <!-- Applications -->
+      <div id="atab-applications" class="scroll">
+        <h2>Citizenship Petitions</h2>
+        <div class="filter" id="app-filter">
+          <button class="btn small" data-status="pending">Pending</button>
+          <button class="btn small ghost" data-status="accepted">Accepted</button>
+          <button class="btn small ghost" data-status="rejected">Rejected</button>
+          <button class="btn small ghost" data-status="all">All</button>
+        </div>
+        <div id="app-list" class="admin-list"></div>
+      </div>
+
+      <!-- Constitution -->
+      <div id="atab-constitution" class="scroll" hidden>
+        <h2>Edit the Constitution</h2>
+        <p class="hint">Articles are numbered automatically by their order. Leave an empty line between paragraphs.</p>
+        <div id="article-list" class="admin-list"></div>
+        <button id="add-article" class="btn">+ Add article</button>
+      </div>
+
+      <!-- Builds -->
+      <div id="atab-builds" class="scroll" hidden>
+        <h2>Add a Build</h2>
+        <form id="build-form">
+          <label for="b-title">Title</label>
+          <input id="b-title" name="title" required maxlength="100">
+          <div class="grid-2">
+            <div>
+              <label for="b-builder">Builder(s)</label>
+              <input id="b-builder" name="builder" maxlength="100">
+            </div>
+            <div>
+              <label for="b-location">Location / coordinates</label>
+              <input id="b-location" name="location" maxlength="100" placeholder="X 120 / Z -340">
+            </div>
+          </div>
+          <label for="b-desc">Description</label>
+          <textarea id="b-desc" name="description" maxlength="2000"></textarea>
+          <label for="b-image">Screenshot (JPG, PNG or WebP, max. 5 MB)</label>
+          <input id="b-image" name="image" type="file" accept="image/png,image/jpeg,image/webp">
+          <button class="btn" type="submit">Upload build</button>
+          <p id="build-msg" class="form-msg" role="status"></p>
+        </form>
+        <h2 style="margin-top:32px">Existing Builds</h2>
+        <div id="build-list" class="admin-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="index.html">&larr; Back to the realm</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+:root {
+  --parchment: #f2e6c9;
+  --parchment-dark: #e4d3aa;
+  --ink: #2b1d0e;
+  --ink-soft: #5c4630;
+  --crimson: #7a1f1f;
+  --crimson-dark: #521313;
+  --gold: #c9a24a;
+  --gold-soft: #e8cf8e;
+  --stone: #2a2420;
+  --success: #2f5d2a;
+  --error: #9b1c1c;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "EB Garamond", "Times New Roman", serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at top, rgba(255,255,255,.35), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(120,80,30,.18), transparent 60%),
+    var(--parchment);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, .tabs button, .btn, label { font-family: "Cinzel", serif; }
+a { color: var(--crimson); }
+code { font-size: .9em; background: rgba(0,0,0,.08); padding: 1px 5px; border-radius: 3px; }
+
+/* ---------- Banner ---------- */
+.banner {
+  background: linear-gradient(var(--crimson), var(--crimson-dark));
+  color: var(--gold-soft);
+  border-bottom: 4px double var(--gold);
+  box-shadow: 0 4px 18px rgba(0,0,0,.35);
+}
+.banner-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+}
+.crest { width: 74px; height: 90px; flex: none; filter: drop-shadow(0 3px 4px rgba(0,0,0,.4)); }
+.nation-name {
+  margin: 0;
+  font-size: clamp(1.7rem, 5vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: .06em;
+  color: var(--gold);
+  text-shadow: 0 2px 0 rgba(0,0,0,.35);
+}
+.motto { margin: 2px 0 0; font-size: 1.1rem; color: var(--gold-soft); }
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 16px 14px;
+}
+.tabs button, .admin-tabs button {
+  background: transparent;
+  color: var(--gold-soft);
+  border: 1px solid rgba(201,162,74,.5);
+  padding: 9px 18px;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.tabs button:hover, .admin-tabs button:hover { background: rgba(201,162,74,.15); }
+.tabs button[aria-selected="true"], .admin-tabs button[aria-selected="true"] {
+  background: var(--gold);
+  color: var(--crimson-dark);
+  border-color: var(--gold);
+  font-weight: 700;
+}
+
+.demo-note {
+  max-width: 968px;
+  margin: 16px 16px 0;
+  padding: 10px 16px;
+  background: #fff4cf;
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ---------- Layout ---------- */
+main { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding: 32px 16px 48px; }
+.center { text-align: center; }
+h2 { font-size: 1.9rem; margin: 0 0 6px; color: var(--crimson); letter-spacing: .04em; }
+.lead { font-style: italic; color: var(--ink-soft); margin-top: 0; }
+.muted { color: var(--ink-soft); font-style: italic; }
+.error { color: var(--error); }
+
+.scroll {
+  background: rgba(255,250,235,.65);
+  border: 1px solid var(--parchment-dark);
+  border-radius: var(--radius);
+  padding: 32px clamp(18px, 5vw, 48px);
+  box-shadow: inset 0 0 40px rgba(120,80,30,.15), 0 6px 20px rgba(60,40,20,.15);
+}
+.scroll.narrow { max-width: 620px; margin: 0 auto; }
+
+/* ---------- Constitution ---------- */
+.article { padding: 18px 0; border-top: 1px solid var(--parchment-dark); }
+.article:first-child { border-top: none; }
+.article h3 { margin: 0 0 8px; font-size: 1.3rem; color: var(--ink); }
+.article-no {
+  display: block;
+  font-size: .8rem;
+  letter-spacing: .2em;
+  color: var(--crimson);
+  text-transform: uppercase;
+}
+.article p { margin: 0 0 10px; }
+.article p + p { clear: left; }
+.article::after { content: ""; display: block; clear: both; }
+.article p:first-of-type::first-letter {
+  font-family: "Cinzel", serif;
+  float: left;
+  font-size: 2.7em;
+  line-height: .9;
+  padding: 4px 8px 0 0;
+  color: var(--crimson);
+}
+
+/* ---------- Builds ---------- */
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+.build-card {
+  margin: 0;
+  background: #fffaf0;
+  border: 1px solid var(--parchment-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(60,40,20,.18);
+  transition: transform .2s;
+}
+.build-card:hover { transform: translateY(-3px); }
+.build-card img, .img-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--stone);
+}
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--gold);
+}
+.build-card figcaption { padding: 14px 18px 18px; }
+.build-card h3 { margin: 0 0 4px; font-size: 1.15rem; }
+.build-card p { margin: 0 0 6px; }
+.meta { font-size: .95rem; color: var(--crimson); font-style: italic; }
+
+/* ---------- Forms ---------- */
+form { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: .9rem; letter-spacing: .06em; margin-top: 10px; }
+input, textarea, select {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid #b9a37a;
+  border-radius: var(--radius);
+  background: #fffdf6;
+  color: var(--ink);
+  width: 100%;
+}
+input:focus, textarea:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+textarea { min-height: 140px; resize: vertical; }
+.hint { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+.btn {
+  margin-top: 14px;
+  align-self: flex-start;
+  background: var(--crimson);
+  color: var(--gold-soft);
+  border: 1px solid var(--gold);
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  font-size: .95rem;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.btn:hover { background: var(--crimson-dark); }
+.btn:disabled { opacity: .6; cursor: wait; }
+.btn.small { margin-top: 0; padding: 6px 12px; font-size: .8rem; }
+.btn.ghost { background: transparent; color: var(--crimson); border-color: var(--crimson); }
+.btn.ghost:hover { background: rgba(122,31,31,.08); }
+.btn.green { background: var(--success); }
+.form-msg { margin: 8px 0 0; min-height: 1.4em; }
+.form-msg.success { color: var(--success); }
+.form-msg.error { color: var(--error); }
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--stone);
+  color: var(--parchment-dark);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+.footer a { color: var(--gold); }
+
+/* ---------- Admin ---------- */
+.admin-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.admin-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.admin-tabs button { color: var(--crimson); border-color: var(--crimson); }
+.admin-tabs button[aria-selected="true"] { background: var(--crimson); color: var(--gold-soft); border-color: var(--crimson); }
+.admin-list { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.admin-item {
+  background: #fffaf0;
+  border: 1px solid var(--parchment-dark);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.admin-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge {
+  font-family: "Cinzel", serif;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+}
+.badge.pending { color: #8a6a12; }
+.badge.accepted { color: var(--success); }
+.badge.rejected { color: var(--error); }
+.thumb { width: 90px; height: 56px; object-fit: cover; border-radius: 4px; background: var(--stone); flex: none; }
+.filter { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+@media (max-width: 600px) {
+  .banner-inner { flex-direction: column; gap: 10px; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1000px) { .demo-note { margin: 16px auto 0; } }
