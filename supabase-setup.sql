@@ -92,18 +92,13 @@ create policy "admins update build images" on storage.objects
 create policy "admins delete build images" on storage.objects
   for delete to authenticated using (bucket_id = 'builds' and public.is_admin());
 
--- ---------- Starter content (edit or delete later in the Council panel) ----------
-insert into public.constitution_articles (position, title, body) values
-  (1, 'Of the Realm', 'The Kingdom is a sovereign nation upon this server, founded by its first citizens in good faith and fellowship.'),
-  (2, 'Of the Crown and the Council', 'The Crown leads the Kingdom. A Council of Admins advises the Crown and keeps order in the realm.'),
-  (3, 'Of the Citizens', 'Every citizen may build, trade and dwell within the Kingdom''s borders.
-
-Griefing, theft and dishonour towards fellow citizens are forbidden.');
-
 -- =====================================================================
 --  ADDING AN ADMIN (run separately, once per admin):
---  1. Authentication -> Users -> "Add user" (email + password, tick "Auto Confirm")
---  2. Then run this line with their email:
+--  Admins log in on the website with just a username, e.g. "acp5".
+--  1. Authentication -> Users -> "Add user" -> "Create new user"
+--     Email: <username>@icarus.admin   (e.g. acp5@icarus.admin)
+--     Password: their password, tick "Auto Confirm User"
+--  2. Then run this line with that address:
 --
---  insert into public.admins (user_id) select id from auth.users where email = 'admin@example.com';
+--  insert into public.admins (user_id) select id from auth.users where email = 'acp5@icarus.admin';
 -- =====================================================================

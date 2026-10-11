@@ -13,10 +13,13 @@
   <header class="banner">
     <div class="banner-inner">
       <svg class="crest" viewBox="0 0 100 120" aria-hidden="true">
-        <path d="M50 4 L94 18 V58 C94 88 72 106 50 116 C28 106 6 88 6 58 V18 Z" fill="var(--crimson)" stroke="var(--gold)" stroke-width="4"/>
-        <path d="M30 78 V50 h6 v-8 h6 v8 h4 v-14 h8 v14 h4 v-8 h6 v8 h6 v28 Z" fill="var(--gold)"/>
-        <rect x="45" y="62" width="10" height="16" rx="5" fill="var(--crimson)"/>
-        <path d="M34 26 l6 8 l10 -12 l10 12 l6 -8 v12 h-32 Z" fill="var(--gold)"/>
+        <defs><clipPath id="shield"><path d="M50 4 L94 18 V58 C94 88 72 106 50 116 C28 106 6 88 6 58 V18 Z"/></clipPath></defs>
+        <g clip-path="url(#shield)">
+          <rect x="0" y="0" width="34" height="120" fill="#111"/>
+          <rect x="34" y="0" width="32" height="120" fill="#f4f1ea"/>
+          <rect x="66" y="0" width="34" height="120" fill="var(--crimson)"/>
+        </g>
+        <path d="M50 4 L94 18 V58 C94 88 72 106 50 116 C28 106 6 88 6 58 V18 Z" fill="none" stroke="var(--gold)" stroke-width="4"/>
       </svg>
       <div>
         <h1 class="nation-name" data-nation-name></h1>
@@ -38,13 +41,13 @@
     <section id="tab-constitution" class="panel" role="tabpanel">
       <div class="scroll">
         <h2>The Constitution</h2>
-        <p class="lead">The founding law of <span data-nation-name></span>, binding upon Crown and citizen alike.</p>
+        <p class="lead">The founding law of <span data-nation-name></span>, supreme over all legislation and executive decree.</p>
         <div id="articles" class="articles"><p class="muted">Loading…</p></div>
       </div>
     </section>
 
     <section id="tab-builds" class="panel" role="tabpanel" hidden>
-      <h2 class="center">Builds of the Realm</h2>
+      <h2 class="center">Builds of the Republic</h2>
       <p class="lead center">Great works raised by the hands of our citizens.</p>
       <div id="builds" class="build-grid"><p class="muted">Loading…</p></div>
     </section>

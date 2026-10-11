@@ -31,7 +31,7 @@ Ohne Einrichtung läuft die Seite im **Demo-Modus** mit Beispielinhalten. So kan
 
 ## 2. Name und Motto ändern
 
-In `config.js` die Werte bei `nationName` und `motto` ersetzen, dann committen und pushen:
+In `config.js` die Werte bei `nationName` und `motto` anpassen (aktuell: Third Icarian Republic, Capital: Blue Cove), dann committen und pushen:
 ```
 Name und Motto angepasst
 ```
@@ -54,19 +54,24 @@ Name und Motto angepasst
 
 ## 4. Admins hinzufügen
 
+Admins melden sich auf der Website nur mit **Benutzername + Passwort** an (z. B. `acp5`). Intern macht die Seite daraus `acp5@icarus.admin`, deshalb legst du den Nutzer in Supabase mit dieser Adresse an.
+
 Für jeden Admin:
 
-1. *Authentication → Users → Add user → Create new user*: E-Mail und Passwort eingeben, **Auto Confirm User** anhaken.
-2. Im **SQL Editor** ausführen (E-Mail anpassen):
+1. *Authentication → Users → Add user → Create new user*
+   - Email: `BENUTZERNAME@icarus.admin` (z. B. `acp5@icarus.admin`)
+   - Password: das gewünschte Passwort
+   - **Auto Confirm User** anhaken
+2. Im **SQL Editor** ausführen:
    ```sql
-   insert into public.admins (user_id) select id from auth.users where email = 'admin@example.com';
+   insert into public.admins (user_id) select id from auth.users where email = 'acp5@icarus.admin';
    ```
 
-Danach kann sich der Admin unten auf der Seite über **Council login** anmelden.
+Danach kann sich der Admin unten auf der Seite über **Council login** mit `acp5` anmelden.
 
 Admin entfernen:
 ```sql
-delete from public.admins where user_id = (select id from auth.users where email = 'admin@example.com');
+delete from public.admins where user_id = (select id from auth.users where email = 'acp5@icarus.admin');
 ```
 
 ## 5. Später auf eigene Domain (z. B. icchteste.de)
