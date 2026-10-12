@@ -12,6 +12,6 @@ window.SITE_CONFIG = {
 
   // From Supabase: Project Settings -> API
   // Leave empty to run the site in demo mode with sample content.
-  supabaseUrl: "https://jqthvorohqfpkfwpgjxz.supabase.co/rest/v1/",
+  supabaseUrl: "https://jqthvorohqfpkfwpgjxz.supabase.co",
   supabaseAnonKey: "sb_publishable_vLMeTNP1QVRUi9zGeJI-6Q_rHMhKvT_"
 };
