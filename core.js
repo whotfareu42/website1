@@ -3,7 +3,9 @@
   const cfg = window.SITE_CONFIG || {};
   const hasBackend = Boolean(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase);
 
-  const db = hasBackend ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey) : null;
+  // Accept the URL even if it was copied with /rest/v1/ or a trailing slash.
+  const projectUrl = String(cfg.supabaseUrl || "").trim().replace(/\/rest\/v1\/?$/, "").replace(/\/+$/, "");
+  const db = hasBackend ? window.supabase.createClient(projectUrl, cfg.supabaseAnonKey.trim()) : null;
 
   function escapeHtml(value) {
     return String(value ?? "")
